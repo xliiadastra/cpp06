@@ -1,5 +1,8 @@
 #include <iostream>
 #include <random>
+#include <ctime>
+//#include <cwindows.h>
+#include <unistd.h>
 #include "Base.hpp"
 #include "A.hpp"
 #include "B.hpp"
@@ -15,7 +18,7 @@ void check_leaks(){
 
 int main(void)
 {
-	atexit(check_leaks);
+//	atexit(check_leaks);
 	Base* random[10];
 
 	for (int i = 0; i < 10; ++i)
@@ -24,22 +27,25 @@ int main(void)
 		identify(random[i]);
 		identify(*random[i]);
 		delete random[i];
+		sleep(1);
 	}
 	return (0);
 }
 
-Base*	generate(void)
+Base*	generate(void) // 랜덤으로 인스턴스화 하고 포인터로 반환.
 {
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_int_distribution<int> dis(0,2);
-	Base* ret;
-	int random;
+	// std::random_device rd;
+	// std::mt19937 gen(rd());
+	// std::uniform_int_distribution<int> dis(0,2); // 랜덤 범위 0~2
 
-	random = dis(gen);
-	if (random == 1)
+	Base* ret;
+	srand(time(0));
+
+	int random = rand() / 3;
+//	random = dis(gen);
+	if (random % 3 == 1)
 		ret = new A;
-	else if (random == 2)
+	else if (random % 3 == 2)
 		ret = new B;
 	else
 		ret = new C;
