@@ -1,4 +1,4 @@
-NAME		= serialize
+NAME		= type
 
 CC		= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++98

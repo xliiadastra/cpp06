@@ -3,7 +3,7 @@
 int main()
 {
 	Data		data;
-	uintptr_t	ptr; // uint 로 포인터(주소값)를 표현하기 때문에 10진법으로 나옴.
+	uintptr_t	ptr; // 다른 환경으로 이식하고, 안전한 포인터 선언법. 정수로 표현된다. (intptr_t 의 부호없는 버전)
 	Data*		ptrData;
 
 	data.c = 'a';
