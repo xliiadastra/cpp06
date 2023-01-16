@@ -73,24 +73,24 @@ bool isInf(double d)
 std::ostream& operator<<(std::ostream& outputStream, const Conversion& obj)
 {
 	if (isNan(obj.getDouble()) || isInf(obj.getDouble())
-		|| obj.getDouble() > 127 || obj.getDouble() < 0)
+		|| obj.getDouble() > 127 || obj.getDouble() < 0) // char ascii에 벗어나는 문자
 		std::cout << "char: impossible" << std::endl;
-	else if ((0 <= obj.getDouble() && obj.getDouble() < 32) || obj.getDouble() == 127)
+	else if ((0 <= obj.getDouble() && obj.getDouble() < 32) || obj.getDouble() == 127) // 출력 불가 문자
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: '" << obj.getChar() << "'" << std::endl;
 
-	if (isNan(obj.getDouble()) || isInf(obj.getDouble()))
+	if (isNan(obj.getDouble()) || isInf(obj.getDouble())) // int ascii에 벗어나는 문자
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << obj.getInt() << std::endl;
 
 	std::cout << "float: " << obj.getFloat();
-	if (static_cast<float>(obj.getInt()) == obj.getFloat())
+	if (static_cast<float>(obj.getInt()) == obj.getFloat()) // 0일 때
 		std::cout << ".0";
 	std::cout << "f" << std::endl;
 	std::cout << "double: " << obj.getDouble();
-	if (static_cast<double>(obj.getInt()) == obj.getDouble())
+	if (static_cast<double>(obj.getInt()) == obj.getDouble()) // 0일 때
 		std::cout << ".0";
 	std::cout << std::endl;
 	return (outputStream);
