@@ -62,7 +62,7 @@ double  Conversion::getDouble(void) const
 
 bool isNan(double d)
 {
-	return (d != d); //
+	return (d != d); // nan은 어떤 수 와도 같지 않다. 같은 nan이랑도 비교했을 때도 false를 내보낸다.
 }
 
 bool isInf(double d)
